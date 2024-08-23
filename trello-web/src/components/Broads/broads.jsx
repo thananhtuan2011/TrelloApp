@@ -1,25 +1,29 @@
 import { Box, Container, CssBaseline } from '@mui/material';
 import React from 'react';
-import DarkLight from '../DarkLightSelect/DarkLight';
-import theme_ from './theme';
-function broads(props) {
+import theme_ from '../../theme';
+import Appbar from '../Appbar/Appbar';
+import { useTranslation } from 'react-i18next';
+function Broads(props) {
+    const { t, i18n } = useTranslation();
     return (
         <>
-        <CssBaseline /><Container maxWidth="false">
+        <CssBaseline />
+        
+
             <Box className='flex items-center' style={{ height: theme_.trello.header }}>
-                <DarkLight></DarkLight>
+                <Appbar></Appbar>
             </Box>
             <Box>
                 <div style={{ color: 'red' }}>
-                    Boorad bard
+                {t('welcome')}
                 </div>
             </Box>
-            <Box>
+            <Box >
                 Contntn
             </Box>
-        </Container>
+
         </>
     );
 }
 
-export default broads;
+export default Broads;

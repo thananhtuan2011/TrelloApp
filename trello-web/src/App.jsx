@@ -1,17 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Container } from '@mui/material'
 import './App.css'
-import Button from '@mui/material/Button';
-import { Box, Container, CssBaseline, useColorScheme } from '@mui/material';
-import theme_ from './theme';
+import { I18nextProvider } from 'react-i18next';
+import Broads from './components/Broads/broads'
+import i18n from './utils/i18n';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from './components/User/Login';
+import ProtectedRoute from './components/Auth/ProtectedRouter';
 
 
 function App() {
   return (  
-    <>
-   <broads></broads>
-    </>
+    <Container className='h-screen' maxWidth="false">
+        <I18nextProvider i18n={i18n}>
+        {/* <Broads></Broads> */}
+        <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<ProtectedRoute element={Broads} />} />
+      </Routes>
+    </Router>
+        </I18nextProvider>
+   </Container>
   )
 }
 
