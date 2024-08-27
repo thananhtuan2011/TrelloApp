@@ -1,0 +1,28 @@
+$_light:#FFFF;
+
+.color_light{
+    color: $_light;
+}
+.thembody
+{
+    .MuiOutlinedInput-notchedOutline
+    {
+        border-color:$_light  !important;
+        border-width: 1px  !important;
+        
+    }
+    .MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color:$_light;
+    }
+   
+    
+    .MuiOutlinedInput-root
+    {   
+        color:$_light;
+    }
+    .MuiSvgIcon-root
+    {
+        color: $_light;
+    }
+     
+}

@@ -5,7 +5,7 @@ function Login(props) {
     const navigate = useNavigate();
     const handleSubmit=()=>
     {
-        // alert("eee")
+        localStorage.setItem('token',"123213213");
         navigate('/')
     }
     return (
