@@ -5,13 +5,14 @@ const APP_BAR_HEIGHT = '58px'
 const BOARD_BAR_HEIGHT = '60px'
 const BOARD_CONTENT_HEIGHT = `calc(100vh - ${APP_BAR_HEIGHT} -  ${BOARD_BAR_HEIGHT})`
 const COLUMN_HEADER_HEIGHT = '50px'
-const COLUMN_FOOTER_HEIGHT = '56px'
+const COLUMN_FOOTER_HEIGHT = '40px'
 
 const theme = extendTheme({
     trello:{
         header:APP_BAR_HEIGHT,
         board_bar:BOARD_BAR_HEIGHT,
-        body_content:BOARD_CONTENT_HEIGHT
+        body_content:BOARD_CONTENT_HEIGHT,
+        col_foodter:COLUMN_FOOTER_HEIGHT
     },
     colorSchemes: {
       light: {
@@ -28,6 +29,32 @@ const theme = extendTheme({
         //   },
         // },
       },
+      
+    },
+    components:
+    {
+      MuiSvgIcon:{
+        styleOverrides: {
+          // Name of the slot
+          root: {
+            // Some CSS
+            cursor:'pointer'
+          
+          }
+        }
+      },
+    MuiButton: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          textTransform: 'none',
+          border:'1px solid',
+          borderWidth: '0.5px',
+          '&:hover': { borderWidth: '0.5px' }
+        }
+      }
+    }
     },
   });
 

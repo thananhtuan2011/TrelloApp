@@ -1,11 +1,11 @@
 import { Box, Container } from '@mui/material'
 import './App.css'
 import { I18nextProvider } from 'react-i18next';
-import Broads from './components/Broads/broads'
 import i18n from './utils/i18n';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from './components/User/Login';
 import ProtectedRoute from './components/Auth/ProtectedRouter';
+import Broads from './components/Broads/BoardLayout';
 
 
 function App() {

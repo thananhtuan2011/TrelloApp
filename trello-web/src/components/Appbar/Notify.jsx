@@ -1,4 +1,4 @@
-import { Box, Container, Popover, Tooltip } from '@mui/material';
+import { Badge, Box, Container, Popover, Tooltip } from '@mui/material';
 import React from 'react';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 function Notify(props) {
@@ -19,6 +19,8 @@ function Notify(props) {
             <Tooltip title="Notify">
 
             <Box className='cursor-pointer'>
+            <Badge badgeContent={4} color="secondary">
+
                 <NotificationsIcon aria-describedby={id} variant="contained" onClick={handleClick} className='text-white'></NotificationsIcon>
 
                 <Popover
@@ -35,6 +37,8 @@ function Notify(props) {
                     Show notify
                    </Container>
                 </Popover>
+            </Badge>
+
             </Box>
             </Tooltip>
 

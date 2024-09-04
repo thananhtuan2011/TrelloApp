@@ -1,0 +1,27 @@
+$height_header_appbar:58px;
+$height_content_appbar:60px;
+$COLUMN_FOOTER_HEIGHT:40px;
+.board_card
+{
+    cursor: pointer;
+    height: fit-content;
+    min-width: 320px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    max-height:calc(100vh - $height_header_appbar -  $height_content_appbar) ;
+    // height: calc(100vh - $height_header_appbar -  $height_content_appbar);
+    border-radius: 8px;
+}
+.content_card
+{
+    margin-right: 5px;
+    padding: 0 5px 15px 15px;
+    height: fit-content;
+    max-height:calc(100vh - $height_header_appbar -  $height_content_appbar - $height_content_appbar - $COLUMN_FOOTER_HEIGHT - 20px) ;
+}
+.card_action
+{
+    button{
+        border: none;
+    }
+}

@@ -9,6 +9,7 @@ import PivotTableChartIcon from '@mui/icons-material/PivotTableChart';
 import Notify from './Notify';
 import Search from './Search/Search';
 import HelpIcon from '@mui/icons-material/Help';
+import User_profile from './User/User_profile';
 function Translate(props) {
     const { i18n } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -67,7 +68,7 @@ function Appbar(props) {
     };
     return (
         <Box className=" w-full flex items-center justify-between">
-            <Box className='flex items-center'>
+            <Box className='flex items-center'  sx={{display:{xs:'none',md:'flex'}}}>
                 <AppsIcon
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
@@ -88,19 +89,20 @@ function Appbar(props) {
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
-                <div >
+                <div className='flex items-center' >
                     <PivotTableChartIcon className='ml-1.5 color_light'></PivotTableChartIcon>
                     <span className='font-bold text-base ml-1 color_light'>Trello</span>
                 </div>
             </Box>
-            <Box className='flex items-center'>
+            <Box className='flex items-center justify-end w-full'>
                 <Search mode={props.mode}></Search>
                 <DarkLight title={`ok lala`}></DarkLight>
                 <Translate></Translate>
                 <Notify></Notify>
                 <Tooltip title="Help">
-                <HelpIcon className='text-white ml-1'></HelpIcon>
+                <HelpIcon className='text-white ml-3'></HelpIcon>
                 </Tooltip>
+                <User_profile></User_profile>
 
             </Box>
         </Box>
