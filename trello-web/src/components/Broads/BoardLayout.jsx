@@ -6,9 +6,12 @@ import { useTranslation } from 'react-i18next';
 import Board_bar from './board_bar';
 import Board_Card from './Board_Card/Board_Card';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import '../../assets/sass/board_card.scss'
+import  { mockData }  from '../../apis/mock-data';
 function Broads(props) {
     const { mode, setMode } = useColorScheme();
     const { t, i18n } = useTranslation();
+    
     return (
         <>
             <CssBaseline />
@@ -29,7 +32,7 @@ function Broads(props) {
                     mode === 'dark' ? 'rgb(70 87 105)' : 'rgb(70 152 233)'
             }}>
                 <Container maxWidth='false'>
-                    <Board_bar></Board_bar>
+                    <Board_bar dtboard={mockData.board}></Board_bar>
                 </Container>
 
             </Box>
@@ -39,13 +42,18 @@ function Broads(props) {
                     mode === 'dark' ? 'rgb(70 87 105)' : 'rgb(70 152 233)'
             }} >
                 <Container maxWidth='false' >
-                    <Box className='flex overflow-x-auto '>
-                            <Board_Card them={mode}></Board_Card>
-                            <Board_Card them={mode}></Board_Card>
-                            <Board_Card them={mode}></Board_Card>
-                            <Board_Card them={mode}></Board_Card>
-                            <Board_Card them={mode}></Board_Card>
-                            <Board_Card them={mode}></Board_Card>
+                    <Box className='flex overflow-x-auto body_board '>
+                        {
+                            mockData?.board.columns.map(item=>
+                            {
+                                return (
+                                    <Board_Card></Board_Card>
+                                )
+                            }
+                            )
+                        }
+                           
+                           
 
                             <Button style={{minWidth:'160px'}} size='medium' className='!text-white  h-9 !border-none !bg-sky-400 hover:!bg-sky-700 !ml-3'>
                                 

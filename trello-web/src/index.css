@@ -72,9 +72,9 @@ button:focus-visible {
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
-  opacity: 0;
-  height: 5px;
+  /* width: 7px; */
+  /* opacity: 0; */
+  height: 14px;
 }
 
 ::-webkit-scrollbar-track {
