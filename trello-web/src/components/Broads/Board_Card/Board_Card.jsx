@@ -10,8 +10,37 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import theme_ from '../../../theme'
 import { useEffect } from 'react';
 import List_Card from './ListCard/List_Card';
+
+import {
+    closestCenter,
+    pointerWithin,
+    rectIntersection,
+    DndContext,
+    DragOverlay,
+    getFirstCollision,
+    KeyboardSensor,
+    MouseSensor,
+    TouchSensor,
+    useDroppable,
+    useSensors,
+    useSensor,
+    MeasuringStrategy,
+    defaultDropAnimationSideEffects,
+} from '@dnd-kit/core';
+import {
+    SortableContext,
+    useSortable,
+    arrayMove,
+    verticalListSortingStrategy,
+    horizontalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+const PLACEHOLDER_ID = 'placeholder';
 function Board_Card(props) {
     const { mode, setMode } = useColorScheme();
+    const { item_ } = props
+    console.log("item_",item_);
+    
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -20,6 +49,7 @@ function Board_Card(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     // useEffect(()=>
     // {
     //     setTheme(props.them);
@@ -28,81 +58,80 @@ function Board_Card(props) {
     // },[])
 
     return (
+        <SortableContext
+            items={item_}
+            strategy={horizontalListSortingStrategy}
 
-        <Box style={{ backgroundColor: mode == 'dark' ? 'rgb(110 123 137) ' : 'rgb(223 223 223 / 95%)' }} className='board_card  mr-5 '>
-            <Box style={{ height: theme_.trello.board_bar }} className='flex justify-between items-center pr-4 pl-4 '>
-                <div className='font-bold'>
-                    header
-                </div>
-                <MoreHorizIcon id="basic-more"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}></MoreHorizIcon>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    MenuListProps={{
-                        'aria-labelledby': 'basic-more',
-                    }}
-                >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </Menu>
-            </Box>
-            <Box className='overflow-y-auto  content_card ' >
-                {/* <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                        sx={{ height: 140 }}
-                        image="https://img.pikbest.com/ai/illus_our/20230418/64e0e89c52dec903ce07bb1821b4bcc8.jpg!w700wp"
-                        title="green iguana"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Lizard
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                            species, ranging across all continents except Antarctica
-                        </Typography>
-                    </CardContent>
-                    <CardActions className='card_action'>
-                        <Button size="small" startIcon={<GroupIcon></GroupIcon>}>
-                            20
-                        </Button>
-                        <Button size="small" startIcon={<ModeCommentIcon></ModeCommentIcon>}>10</Button>
-                    </CardActions>
-                </Card>
-                <Card className='mt-2'>
-                    <Box className='p-2'>
-                        Card121
+        >
+            {
+                item_.map(data=>
+                {
+                    return (
+                        <Box style={{ backgroundColor: mode == 'dark' ? 'rgb(110 123 137) ' : 'rgb(223 223 223 / 95%)' }} className='board_card  mr-5 '>
+                        <Box style={{ height: theme_.trello.board_bar }} className='flex justify-between items-center pr-4 pl-4 '>
+                            <div className='font-bold'>
+                                {data.title}
+                            </div>
+                            <MoreHorizIcon id="basic-more"
+                                aria-controls={open ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                                onClick={handleClick}></MoreHorizIcon>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-more',
+                                }}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            </Menu>
+                        </Box>
+                        <Box className='overflow-y-auto  content_card ' >
+                            {/* {
+                                item_?.cards.map((item, index) => {
+                                    return (
+                                        <List_Card item_={item}></List_Card>
+                                    )
+                                }
+                                )
+        
+        
+        
+                            } */}
+        
+        
+        
+                        </Box>
+                        <Box style={{ height: theme_.trello.col_foodter }} className='flex justify-between items-center pr-4 pl-4'>
+                            <div className='flex items-center cursor-pointer '>
+                                <AddCardIcon style={{
+                                    color:
+                                        mode == 'dark' ? '#FFFFF' : 'rgb(70 152 233)'
+                                }}></AddCardIcon>
+                                <span style={{
+                                    color:
+                                        mode == 'dark' ? '#FFFFF' : 'rgb(70 152 233)'
+                                }} className='font-bold text-sm pl-3'>
+                                    Add new card
+                                </span>
+                            </div>
+                            <div>
+                                <DragHandleIcon></DragHandleIcon>
+                            </div>
+                        </Box>
                     </Box>
-                </Card> */}
-                <List_Card></List_Card>
-               
-               
-            </Box>
-            <Box style={{ height: theme_.trello.col_foodter }} className='flex justify-between items-center pr-4 pl-4'>
-                <div className='flex items-center cursor-pointer '>
-                    <AddCardIcon style={{
-                        color:
-                            mode == 'dark' ? '#FFFFF' : 'rgb(70 152 233)'
-                    }}></AddCardIcon>
-                    <span style={{
-                        color:
-                            mode == 'dark' ? '#FFFFF' : 'rgb(70 152 233)'
-                    }} className='font-bold text-sm pl-3'>
-                        Add new card
-                    </span>
-                </div>
-                <div>
-                    <DragHandleIcon></DragHandleIcon>
-                </div>
-            </Box>
-        </Box>
+                    )
+                }
+                )
+          
+            }
+
+       </SortableContext>
 
     );
 }

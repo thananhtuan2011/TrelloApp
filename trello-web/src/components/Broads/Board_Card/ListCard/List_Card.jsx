@@ -2,10 +2,12 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } fr
 import React from 'react';
 import GroupIcon from '@mui/icons-material/Group';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
-import _Card from './Card/_Card';
 function List_Card(props) {
+    const {item_card}=props
+    console.log("item_card",item_card);
+    
     return (
-        <Box>
+        <Box className='mb-3'>
         <Card sx={{ maxWidth: 345 }}>
         <CardMedia
             sx={{ height: 140 }}
@@ -14,22 +16,27 @@ function List_Card(props) {
         />
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-                Lizard
+              {item_card.title}
             </Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
+              {item_card.description}
             </Typography>
         </CardContent>
         <CardActions className='card_action'>
             <Button size="small" startIcon={<GroupIcon></GroupIcon>}>
-                20
+            {
+                item_card.memberIds?item_card.memberIds.length:null
+            }
+                
             </Button>
-            <Button size="small" startIcon={<ModeCommentIcon></ModeCommentIcon>}>10</Button>
+            <Button size="small" startIcon={<ModeCommentIcon></ModeCommentIcon>}> 
+            
+            {
+                 item_card.comments?item_card.comments.length:null
+            
+            }</Button>
         </CardActions>
     </Card>
-    {/*  load card */}
-        <_Card></_Card>
     </Box>
     );
 }

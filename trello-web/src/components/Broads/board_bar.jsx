@@ -11,6 +11,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 function Board_bar(props) {
     const { t, i18n } = useTranslation();
     const {dtboard}=props;
+    
     return (
         
         <div className=' text-white flex w-full overflow-x-auto' style={{ minWidth: '100rem' }}>
@@ -18,7 +19,7 @@ function Board_bar(props) {
                 <div>
                     {/* {t('welcome')} */}
                     <BackupTableIcon ></BackupTableIcon>
-                    <span className='pl-1'>Tuan MERN stack board</span>
+                    <span className='pl-1'>{dtboard.title}</span>
                 </div>
                 <div>
                     <PublicIcon ></PublicIcon>
