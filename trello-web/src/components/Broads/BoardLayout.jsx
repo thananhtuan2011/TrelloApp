@@ -8,12 +8,16 @@ import Board_Card from './Board_Card/Board_Card';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import '../../assets/sass/board_card.scss'
 import { mockData } from '../../apis/mock-data';
+import { DndContext } from '@dnd-kit/core';
 
 
 function Broads(props) {
     const { mode, setMode } = useColorScheme();
     const { t, i18n } = useTranslation();
+    const handleDragEnd = (event) => {
+        console.log("handleDragEnd", event);
 
+    }
     return (
         <>
             <CssBaseline />
@@ -36,35 +40,33 @@ function Broads(props) {
                 <Container maxWidth='false'>
                     <Board_bar dtboard={mockData.board}></Board_bar>
                 </Container>
-
             </Box>
             {/* load broad */}
+
             <Box style={{
                 height: theme_.trello.body_content, backgroundColor:
                     mode === 'dark' ? 'rgb(70 87 105)' : 'rgb(70 152 233)'
             }} >
+
                 <Container maxWidth='false' >
-                    <Box className='flex overflow-x-auto body_board '>
-                        {
-                                        <Board_Card item_={mockData?.board.columns
-                                        }></Board_Card>
-                          
-                        }
+                    {/* <DndContext onDragEnd={handleDragEnd}> */}
+                        <Box className='flex overflow-x-auto body_board '>
+                            {
+                                <Board_Card item_={mockData?.board.columns
+                                }></Board_Card>
+                            }
 
+                            <Button style={{ minWidth: '160px' }} size='medium' className='!text-white  h-9 !border-none !bg-sky-400 hover:!bg-sky-700 !ml-3'>
 
+                                <span style={{ minWidth: '140px' }} className='flex items-center'>
+                                    <ControlPointIcon className='mr-1'></ControlPointIcon>
+                                    Add new column
+                                </span>
+                            </Button>
 
-                        <Button style={{ minWidth: '160px' }} size='medium' className='!text-white  h-9 !border-none !bg-sky-400 hover:!bg-sky-700 !ml-3'>
-
-                            <span style={{ minWidth: '140px' }} className='flex items-center'>
-                                <ControlPointIcon className='mr-1'></ControlPointIcon>
-                                Add new column
-                            </span>
-                        </Button>
-
-                    </Box>
-
+                        </Box>
+                    {/* </DndContext> */}
                 </Container>
-
             </Box>
 
 
