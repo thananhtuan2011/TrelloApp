@@ -33,46 +33,50 @@ import ListColumn from './Column/ListColumn';
 
 const PLACEHOLDER_ID = 'placeholder';
 function Board_Card(props) {
-  
+
     const { mode, setMode } = useColorScheme();
-    const { item_ } = props
-    console.log("item_",item_);
-    
+    const [ColumnState, SetColumnState] = useState(props.item_);
 
- 
     const handleDragEnd = (event) => {
+        const { active, over } = event;
         console.log("handleDragEnd", event);
+        if (active.id !== over.id) {
+            setItems((items) => {
+                const oldIndex = items.indexOf(active.id);
+                const newIndex = items.indexOf(over.id);
 
+                return arrayMove(items, oldIndex, newIndex);
+            });
+        }
     }
-    // useEffect(()=>
-    // {
-    //     setTheme(props.them);
-    //     console.log("them_them_",them_);
+    useEffect(() => {
+        console.log("props", props)
+        // SetColumnState(props.item_);
+        console.log("ColumnState", ColumnState)
 
-    // },[])
+    }, [])
 
     return (
         <>
-         <DndContext onDragEnd={handleDragEnd}>
-        <SortableContext
-            items={item_.map(x=>x._id)}
-            strategy={horizontalListSortingStrategy}
-        >
-            {
-                item_.map((item_col)=>
-                {
-                    return (
-                        <ListColumn key={item_col._id} data={item_col}></ListColumn>
-                     
-                    )
-                }
-                )
-          
-            }
+            <DndContext onDragEnd={handleDragEnd}>
+                <SortableContext
+                    items={ColumnState?.map(x => x._id)}
+                    strategy={horizontalListSortingStrategy}
+                >
+                    {
+                        ColumnState?.map((item_col) => {
+                            return (
+                                <ListColumn key={item_col._id} data={item_col}></ListColumn>
 
-       </SortableContext>
-       </DndContext>
-       </>
+                            )
+                        }
+                        )
+
+                    }
+
+                </SortableContext>
+            </DndContext>
+        </>
 
     );
 }
