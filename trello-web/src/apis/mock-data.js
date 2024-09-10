@@ -33,7 +33,7 @@ export const mockData = {
             title: 'Title of card 01',
             description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé) Markdown Syntax (sẽ ở khóa nâng cao nhé) Markdown Syntax (sẽ ở khóa nâng cao nhé) Markdown Syntax (sẽ ở khóa nâng cao nhé)',
             cover:
-              'https://trungquandev.com/wp-content/uploads/2022/07/fair-mern-stack-advanced-banner-trungquandev.jpg',
+              'https://img.pikbest.com/ai/illus_our/20230418/64e0e89c52dec903ce07bb1821b4bcc8.jpg!w700wp',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03']
@@ -229,7 +229,7 @@ export const mockData = {
         cardOrderIds: ['column-id-04-placeholder-card'],
         cards: [
           {
-            _id: 'column-id-04-placeholder-card',
+            _id: 'column-id-04-placeholder-card_1',
             boardId: 'board-id-01',
             columnId: 'column-id-04',
             FE_PlaceholderCard: true
@@ -253,7 +253,7 @@ export const mockData = {
         cardOrderIds: ['column-id-04-placeholder-card'],
         cards: [
           {
-            _id: 'column-id-04-placeholder-card',
+            _id: 'column-id-04-placeholder-card_2',
             boardId: 'board-id-01',
             columnId: 'column-id-04',
             FE_PlaceholderCard: true
