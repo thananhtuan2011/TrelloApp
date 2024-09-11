@@ -1,4 +1,4 @@
-import { useColorScheme } from '@mui/material';
+import { Box, useColorScheme } from '@mui/material';
 import React, { useState } from 'react';
 import '../../../assets/sass/board_card.scss'
 import { useEffect } from 'react';
@@ -63,13 +63,12 @@ function Board_Card(props) {
             let data_card = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
             const oldIndex = data_card.findIndex(x => x._id == active.id);
             const newIndex = data_card.findIndex(x => x._id == over.id)
-            const dndOrderedCards=arrayMove(data_card, oldIndex, newIndex);
-            console.log("dndOrderedCards",dndOrderedCards);
-            
+            const dndOrderedCards = arrayMove(data_card, oldIndex, newIndex);
+            console.log("dndOrderedCards", dndOrderedCards);
+
             const Index_Col = ColumnState.findIndex(x => x._id == event.active.data.current.columnId);
-            if(Index_Col>=0)
-            {
-                ColumnState[Index_Col].cards=dndOrderedCards
+            if (Index_Col >= 0) {
+                ColumnState[Index_Col].cards = dndOrderedCards
                 SetColumnState(ColumnState);
             }
         }
@@ -117,18 +116,18 @@ function Board_Card(props) {
                     strategy={horizontalListSortingStrategy}
                 >
 
-                    {
-                        ColumnState?.map((item_col) => {
-                            return (
+                        {
+                            ColumnState?.map((item_col) => {
+                                return (
 
-                                <ListColumn key={item_col._id} data={item_col}></ListColumn>
+                                    <ListColumn key={item_col._id} data={item_col}></ListColumn>
 
 
+                                )
+                            }
                             )
-                        }
-                        )
 
-                    }
+                        }
 
 
                 </SortableContext>

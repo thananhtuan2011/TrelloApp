@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env BUILD_MODE=dev vite --host --port 4200",
+    "dev": "cross-env BUILD_MODE=dev vite --host --port 4300",
     "build": "cross-env BUILD_MODE=production vite build --base=./",
     "lint": "eslint --ext ts,tsx src/",
     "lint:fix": "eslint --fix --ext ts,tsx src/",
