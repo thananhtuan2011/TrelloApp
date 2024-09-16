@@ -43,7 +43,7 @@ function Board_Card(props) {
         // Press delay of 250ms, with tolerance of 5px of movement
         activationConstraint: {
             delay: 250,
-             tolerance: 500
+            tolerance: 500
         },
     });
     const sensors = useSensors(
@@ -58,17 +58,34 @@ function Board_Card(props) {
     const handleDragEnd = (event) => {
         const { active, over } = event;
         console.log("handleDragEnd", event)
-        if (event.active.data.current.columnId) {
-            // dành cho card
+        if (event.active.data.current.columnId && event.over.data.current.columnId) {
             let data_card = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
-            const oldIndex = data_card.findIndex(x => x._id == active.id);
-            const newIndex = data_card.findIndex(x => x._id == over.id)
-            const dndOrderedCards = arrayMove(data_card, oldIndex, newIndex);
-            console.log("dndOrderedCards", dndOrderedCards);
+            let index_active = data_card.findIndex(x => x._id == event.active.id)
+            let index_over = data_card.findIndex(x => x._id == event.over.id)
+            if (index_active >= 0 && index_over >= 0) {
 
-            const Index_Col = ColumnState.findIndex(x => x._id == event.active.data.current.columnId);
-            if (Index_Col >= 0) {
-                ColumnState[Index_Col].cards = dndOrderedCards
+                // dành cho card cùng 1 cloumn
+
+                const oldIndex = data_card.findIndex(x => x._id == active.id);
+                const newIndex = data_card.findIndex(x => x._id == over.id)
+                const dndOrderedCards = arrayMove(data_card, oldIndex, newIndex);
+                console.log("dndOrderedCards", dndOrderedCards);
+
+                const Index_Col = ColumnState.findIndex(x => x._id == event.active.data.current.columnId);
+                if (Index_Col >= 0) {
+                    ColumnState[Index_Col].cards = dndOrderedCards
+                    SetColumnState(ColumnState);
+                }
+            }
+            else {
+                const Index_Col = ColumnState.findIndex(x => x._id == event.active.data.current.columnId);
+                let data_card_active = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
+                let data_card_over = ColumnState.find(x => x._id == event.over.data.current.columnId).cards
+                let index_active = data_card_active.findIndex(x => x._id == event.active.id)
+                data_card_active.splice(index_active,1)
+                console.log("data_card_active",data_card_active);
+                let index_over = data_card_over.findIndex(x => x._id == event.over.id)
+                ColumnState[Index_Col].cards = data_card_active
                 SetColumnState(ColumnState);
             }
         }
@@ -112,24 +129,24 @@ function Board_Card(props) {
 
     return (
         <>
-            <DndContext  onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
+            <DndContext onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
                 <SortableContext
                     items={ColumnState?.map(x => x._id)}
                     strategy={horizontalListSortingStrategy}
                 >
 
-                        {
-                            ColumnState?.map((item_col) => {
-                                return (
+                    {
+                        ColumnState?.map((item_col) => {
+                            return (
 
-                                    <ListColumn key={item_col._id} data={item_col}></ListColumn>
+                                <ListColumn key={item_col._id} data={item_col}></ListColumn>
 
 
-                                )
-                            }
                             )
-
                         }
+                        )
+
+                    }
 
 
                 </SortableContext>
