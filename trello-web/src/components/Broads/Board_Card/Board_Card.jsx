@@ -79,11 +79,14 @@ function Board_Card(props) {
             }
             else {
                 const Index_Col = ColumnState.findIndex(x => x._id == event.active.data.current.columnId);
+                const Index_Col_Over = ColumnState.findIndex(x => x._id == event.over.data.current.columnId);
                 let data_card_active = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
                 let data_card_over = ColumnState.find(x => x._id == event.over.data.current.columnId).cards
                 let index_active = data_card_active.findIndex(x => x._id == event.active.id)
-                data_card_active.splice(index_active,1)
-                console.log("data_card_active",data_card_active);
+                let data_move = data_card_active[index_active]
+                data_card_over.push(data_move)
+                ColumnState[Index_Col_Over].cards = data_card_over
+                data_card_active.splice(index_active, 1)
                 let index_over = data_card_over.findIndex(x => x._id == event.over.id)
                 ColumnState[Index_Col].cards = data_card_active
                 SetColumnState(ColumnState);
@@ -124,7 +127,6 @@ function Board_Card(props) {
     }
     useEffect(() => {
         SetColumnState(props.item_);
-        console.log("ColumnState", ColumnState);
     }, [props])
 
     return (
