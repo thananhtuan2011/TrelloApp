@@ -79,7 +79,7 @@ function List_Card(props) {
         items={ItemCard?.map(x => x._id)}
         strategy={verticalListSortingStrategy}
     >
-        <Box className='overflow-y-auto  content_card '>
+        <Box  className='overflow-y-auto  content_card '>
                 {
                     ItemCard.map(item_ => {
                         return (

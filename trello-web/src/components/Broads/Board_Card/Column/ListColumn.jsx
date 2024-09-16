@@ -45,12 +45,12 @@ function ListColumn(props) {
     const stylesdnd = {
         transform: CSS.Translate.toString(transform),
         transition,
+        height:'100%',
         opacity: isDragging ? 0.5 : null,
-        backgroundColor: mode == 'dark' ? 'rgb(110 123 137) ' : 'rgb(223 223 223 / 95%)'
     };
     return (
-        <div>
-            <Box  ref={setNodeRef} style={stylesdnd} {...attributes} {...listeners} className='board_card  mr-5 '>
+        <div  ref={setNodeRef} style={stylesdnd} {...attributes}  className='mr-5 ' >
+            <Box {...listeners} className='board_card'  style={{  backgroundColor: mode == 'dark' ? 'rgb(110 123 137) ' : 'rgb(223 223 223 / 95%)'}}>
                 <Box style={{ height: theme_.trello.board_bar }} className='flex justify-between items-center pr-4 pl-4 '>
                     <div className='font-bold'>
                         {data.title}
@@ -74,7 +74,7 @@ function ListColumn(props) {
                         <MenuItem onClick={handleClose}>Logout</MenuItem>
                     </Menu>
                 </Box>
-                    <List_Card    item_card={dataCard} mode_={mode}></List_Card>
+                    <List_Card  key={data._id}    item_card={dataCard} mode_={mode}></List_Card>
 
                 <Box style={{ height: theme_.trello.col_foodter }} className='flex justify-between items-center pr-4 pl-4'>
                     <div className='flex items-center cursor-pointer '>
