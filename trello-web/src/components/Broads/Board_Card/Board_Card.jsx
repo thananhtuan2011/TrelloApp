@@ -36,14 +36,14 @@ function Board_Card(props) {
     const mouseSensor = useSensor(MouseSensor, {
         // Require the mouse to move by 10 pixels before activating
         activationConstraint: {
-            distance: 10,
+            distance: 5,
         },
     });
     const touchSensor = useSensor(TouchSensor, {
         // Press delay of 250ms, with tolerance of 5px of movement
         activationConstraint: {
             delay: 250,
-            tolerance: 500
+             tolerance: 500
         },
     });
     const sensors = useSensors(
@@ -93,12 +93,14 @@ function Board_Card(props) {
 
         if (event.active.data.current.columnId) {
             //  dành cho card item
+            setdataActive(null)
 
             let data_card = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
             SetCardState(data_card.find(x => x._id == event.active.id))
         }
         else {
             //  dành cho column
+            SetCardState(null)
             setdataActive(ColumnState.find(x => x._id == event.active.id))
 
         }
@@ -110,7 +112,7 @@ function Board_Card(props) {
 
     return (
         <>
-            <DndContext onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
+            <DndContext  onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
                 <SortableContext
                     items={ColumnState?.map(x => x._id)}
                     strategy={horizontalListSortingStrategy}

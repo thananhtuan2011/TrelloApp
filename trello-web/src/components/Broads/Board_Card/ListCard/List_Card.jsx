@@ -9,7 +9,49 @@ import '../../../../assets/sass/board_card.scss'
 import Card_Iteam from './Card.jsx/Card_item';
 import { DndContext } from '@dnd-kit/core';
 
+//  const LoadCard_Items=(props)=>
+// {
+//     console.log("bbbbb",props);
+    
+//     if(props.item_card.length>1)
+//     {
+//         return (
+//             <SortableContext
+//             items={ItemCard?.map(x => x._id)}
+//             strategy={verticalListSortingStrategy}
+//         >
+//             <Box className='overflow-y-auto  content_card '>
+//                     {
+//                         ItemCard.map(item_ => {
+//                             return (
+                               
+//                                 <Card_Iteam key={item_.id} item_card={item_}   ></Card_Iteam>
+    
+//                             )
+//                         }
+//                         )
+//                     }
+//             </Box>
+    
+//                 </SortableContext>
+//         )
+//     }
+//     return (
+//         <Box className='overflow-y-auto  content_card '>
+//                 {
+//                     ItemCard.map(item_ => {
+//                         return (
+                           
+//                             <Card_Iteam key={item_.id} item_card={item_}   ></Card_Iteam>
 
+//                         )
+//                     }
+//                     )
+//                 }
+//         </Box>
+//     )
+
+// }
 
 function Img_Card(props) {
 
@@ -33,22 +75,24 @@ function List_Card(props) {
         setItemCard(props.item_card)
     }, [props])
     return (
+        <SortableContext
+        items={ItemCard?.map(x => x._id)}
+        strategy={verticalListSortingStrategy}
+    >
         <Box className='overflow-y-auto  content_card '>
-            <SortableContext
-                items={ItemCard?.map(x => x._id)}
-                strategy={verticalListSortingStrategy}
-            >
                 {
                     ItemCard.map(item_ => {
                         return (
-                            <Card_Iteam key={item_.id} item_card={item_}   ></Card_Iteam>
+                           
+                            <Card_Iteam  key={item_.id} item_card={item_}   ></Card_Iteam>
 
                         )
                     }
                     )
                 }
-            </SortableContext>
         </Box>
+
+            </SortableContext>
     );
 }
 

@@ -189,29 +189,86 @@ export const mockData = {
         ]
       },
       {
-        _id: 'column-id-04',
+        _id: 'column-id-10',
         boardId: 'board-id-01',
-        title: 'Empty Column 04',
-        /**
-         * Video 37.2: Cách xử lý bug logic thư viện Dnd-kit khi Column là rỗng:
-         * Phía FE sẽ tự tạo ra một cái card đặc biệt: Placeholder Card, không liên quan đến Back-end
-         * Card đặt biệt này sẽ được ẩn ở giao diện UI người dùng.
-         * Cấu trúc Id của cái card này để Unique rất đơn giản, không cần phải làm random phức tạp:
-         * "columnId-placeholder-card" (mỗi column chỉ có thể có tối đa một cái Placeholder Card)
-         * Quan trọng khi tạo: phải đầy đủ: (_id, _boardId, columnId, FE_PlaceholderCard)
-         * => Kỹ hơn nữa về cách tạo chuẩn ở bước nào thì sẽ ở học phần tích hợp API Back-end vào dự
-         * án. (bởi vì đây là file mock-data)
-         */
-        cardOrderIds: ['column-id-04-placeholder-card'],
+        title: 'Done Column 10',
+        cardOrderIds: ['card-id-11', 'card-id-12', 'card-id-13'],
         cards: [
           {
-            _id: 'column-id-04-placeholder-card',
+            _id: 'card-id-110',
             boardId: 'board-id-01',
-            columnId: 'column-id-04',
-            FE_PlaceholderCard: true
-          }
+            columnId: 'column-id-10',
+            title: 'Title of card 11',
+            description: null,
+            cover: null,
+            memberIds: [],
+            comments: [],
+            attachments: []
+          },
+          {
+            _id: 'card-id-120',
+            boardId: 'board-id-01',
+            columnId: 'column-id-10',
+            title: 'Title of card 12',
+            description: null,
+            cover: null,
+            memberIds: [],
+            comments: [],
+            attachments: []
+          },
+          // {
+          //   _id: 'card-id-130',
+          //   boardId: 'board-id-01',
+          //   columnId: 'column-id-10',
+          //   title: 'Title of card 13',
+          //   description: null,
+          //   cover: null,
+          //   memberIds: [],
+          //   comments: [],
+          //   attachments: []
+          // }
         ]
       },
+      // {
+      //   _id: 'column-id-04',
+      //   boardId: 'board-id-01',
+      //   title: 'Empty Column 04',
+      //   cardOrderIds: ['column-id-04-placeholder-card'],
+      //   cards: [
+      //     {
+      //                 _id: 'card-id-18',
+      //       boardId: 'board-id-01',
+      //       columnId: 'column-id-04',
+      //       title: 'Title of card 18',
+      //       description: null,
+      //       cover: null,
+      //       memberIds: [],
+      //       comments: [],
+      //       attachments: []
+      //     }
+      //   ]
+      // },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {
         _id: 'column-id-05',
         boardId: 'board-id-01',
