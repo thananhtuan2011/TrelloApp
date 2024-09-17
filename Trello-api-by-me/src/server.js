@@ -32,7 +32,7 @@ app.use('/v1',API_V1)
 
 app.listen(port, hostname, () => {
   // eslint-disable-next-line no-console
-  console.log(`Hello Trung Quan Dev, I am running atss ${ hostname }:${ port }/`)
+  console.log(`Hello Trung Quan Dev, I am running  34243 ${ hostname }:${ port }/`)
 })
 }
 CONNECT_DB().then(

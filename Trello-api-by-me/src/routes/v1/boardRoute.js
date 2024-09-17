@@ -3,7 +3,7 @@ const router=express.Router();
 
 router.get('/getboard',(req,res)=>
 {
-    res.send("ok getboard sss")
+    res.send("ok getboard ")
 })
 
 export default router
