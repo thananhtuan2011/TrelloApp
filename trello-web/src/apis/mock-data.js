@@ -194,39 +194,29 @@ export const mockData = {
         title: 'Done Column 10',
         cardOrderIds: ['card-id-11', 'card-id-12', 'card-id-13'],
         cards: [
-          {
-            _id: 'card-id-110',
-            boardId: 'board-id-01',
-            columnId: 'column-id-10',
-            title: 'Title of card 11',
-            description: null,
-            cover: null,
-            memberIds: [],
-            comments: [],
-            attachments: []
-          },
-          {
-            _id: 'card-id-120',
-            boardId: 'board-id-01',
-            columnId: 'column-id-10',
-            title: 'Title of card 12',
-            description: null,
-            cover: null,
-            memberIds: [],
-            comments: [],
-            attachments: []
-          },
           // {
-          //   _id: 'card-id-130',
+          //   _id: 'card-id-110',
           //   boardId: 'board-id-01',
           //   columnId: 'column-id-10',
-          //   title: 'Title of card 13',
+          //   title: 'Title of card 11',
           //   description: null,
           //   cover: null,
           //   memberIds: [],
           //   comments: [],
           //   attachments: []
-          // }
+          // },
+          // {
+          //   _id: 'card-id-120',
+          //   boardId: 'board-id-01',
+          //   columnId: 'column-id-10',
+          //   title: 'Title of card 12',
+          //   description: null,
+          //   cover: null,
+          //   memberIds: [],
+          //   comments: [],
+          //   attachments: []
+          // },
+        
         ]
       },
       // {

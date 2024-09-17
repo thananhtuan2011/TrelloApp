@@ -2,7 +2,7 @@ import { Box, useColorScheme } from '@mui/material';
 import React, { useState } from 'react';
 import '../../../assets/sass/board_card.scss'
 import { useEffect } from 'react';
-
+import _ from 'lodash'
 import {
     closestCenter,
     pointerWithin,
@@ -57,7 +57,8 @@ function Board_Card(props) {
     const [dataActiveItemCard, setdataActiveItemCard] = useState(null);
     const handleDragEnd = (event) => {
         const { active, over } = event;
-        console.log("handleDragEnd", event)
+        if(_.isEmpty(active)|| _.isEmpty(over)) return;
+        // console.log("handleDragEnd", event)
         if (event.active.data.current.columnId && event.over.data.current.columnId) {
             let data_card = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
             let index_active = data_card.findIndex(x => x._id == event.active.id)
@@ -106,17 +107,18 @@ function Board_Card(props) {
                 // });
             }
         }
-
     }
     const handleDragStart = (event) => {
-        console.log("handleDragStart", event);
+        // console.log("handleDragStart", event);
 
         if (event.active.data.current.columnId) {
             //  dành cho card item
             setdataActive(null)
-
             let data_card = ColumnState.find(x => x._id == event.active.data.current.columnId).cards
+            // console.log("data_card",data_card.find(x => x._id == event.active.id))
             SetCardState(data_card.find(x => x._id == event.active.id))
+            // console.log("CardState",CardState);
+            
         }
         else {
             //  dành cho column
