@@ -1,10 +1,10 @@
 import express from'express'
-const router=express.Router();
+const Router=express.Router();
 
-router.get('/getboard',(req,res)=>
+Router.get('/getboard',(req,res)=>
 {
     res.send("ok getboard ")
 })
 
-export default router
+export default Router
 // export  const Board_router =router;
