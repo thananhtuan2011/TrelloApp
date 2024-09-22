@@ -11,5 +11,5 @@ router.get('/getboard', (req, res) => {
 //  created board validation and controller
 router.post('/created', BoardValidation.CreatedNewBoard, boarController.CreatedNewBoardController)
 
-export default router
+export default Router
 // export  const Board_router =router;
