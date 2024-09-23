@@ -10,6 +10,7 @@ Router.get('/getboard', (req, res) => {
 })
 //  created board validation and controller
 Router.post('/created', BoardValidation.CreatedNewBoard, boarController.CreatedNewBoardController)
+Router.post('/getboar/:id', boarController.GetDetailBoard)
 
 export default Router
 // export  const Board_router =router;
