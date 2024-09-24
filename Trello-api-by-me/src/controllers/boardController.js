@@ -13,10 +13,12 @@ const CreatedNewBoardController = async (req, res, next) => {
 }
 const GetDetailBoard=  async (req, res, next) => {
     try {
-            console.log("req",req);
-            
-        const repon=await boarServices.GetDetailBoard(req.prams.id)
-        res.status(StatusCodes.OK).json(repon)
+        const repon=await boarServices.GetDetailBoard(req.params.id)
+        if(repon)
+        {
+            return res.status(StatusCodes.OK).json(repon)
+        }
+        res.status(StatusCodes.NOT_FOUND)
 
     } catch (error) {
         next(error)

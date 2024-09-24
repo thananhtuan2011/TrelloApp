@@ -8,11 +8,17 @@ import express from 'express'
 import { mapOrder } from '~/utils/sorts.js'
 import { CONNECT_DB } from './config/mongodb'
 import API_V1 from "~/routes/v1/index"
+import cors from'cors'
 import { errorHandlingMiddleware } from './middlewares/handleError'
 const START_SERVER = () => {
 
   const app = express()
   app.use(express.json())
+  const corsOption = {
+    credentials: true,
+    origin: ['http://localhost:4200']
+}
+app.use(cors(corsOption));
   const hostname = 'localhost'
   const port = 8017
   app.use('/v1', API_V1)

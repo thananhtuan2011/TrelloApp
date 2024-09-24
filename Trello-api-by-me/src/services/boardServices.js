@@ -33,5 +33,6 @@ const GetDetailBoard=async (id)=>
     
 
 export const boarServices={
-    CreatedNew
+    CreatedNew,
+    GetDetailBoard
 }

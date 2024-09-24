@@ -26,8 +26,9 @@ const CreatedNew = async (payload) => {
 }
 const GetDetailBoard=async(id)=>
 {
+    
     const result = await GET_DB().collection(BOARD_MODEL.BOARD_COLLECTION_NAME).findOne({
-        _id: ObjectId(id)
+        _id: new ObjectId(id)
     })
     return result;
 }
