@@ -38,7 +38,7 @@ function Broads(props) {
                     mode === 'dark' ? 'rgb(70 87 105)' : 'rgb(70 152 233)'
             }}>
                 <Container maxWidth='false'>
-                    <Board_bar dtboard={mockData.board}></Board_bar>
+                    <Board_bar ></Board_bar>
                 </Container>
             </Box>
             {/* load broad */}

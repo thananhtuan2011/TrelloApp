@@ -1,5 +1,5 @@
 import { Avatar, AvatarGroup, Box, Button, Container } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import BackupTableIcon from '@mui/icons-material/BackupTable';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -8,10 +8,19 @@ import PublicIcon from '@mui/icons-material/Public';
 import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import BoltIcon from '@mui/icons-material/Bolt';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { fetchGetBoard } from '../../apis/board.api';
 function Board_bar(props) {
     const { t, i18n } = useTranslation();
-    const {dtboard}=props;
-    
+    const [boards, setBoard] = React.useState([])
+    const _id="66f0f42fe0b2996f0ab3b3f4";
+    useEffect(()=> {
+        fetchGetBoard(_id).then(res=>
+        {
+            setBoard(res)
+        }
+        )
+    },[])
+  
     return (
         
         <div className=' text-white flex w-full overflow-x-auto' style={{ minWidth: '100rem' }}>
@@ -19,7 +28,7 @@ function Board_bar(props) {
                 <div>
                     {/* {t('welcome')} */}
                     <BackupTableIcon ></BackupTableIcon>
-                    <span className='pl-1'>{dtboard.title}</span>
+                    <span className='pl-1'>{boards.title}</span>
                 </div>
                 <div>
                     <PublicIcon ></PublicIcon>
