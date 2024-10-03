@@ -23,21 +23,22 @@ const CreatedUser = async (req, res, next) => {
 const Login=  async (req, res, next) => {
     try {
         const repon=await userServices.Login_User(req.body)
-        const accessToken = await jwtHelper.generateToken(repon, accessTokenSecret, accessTokenLife);
-        const refreshToken = await jwtHelper.generaterefresh(repon, refreshTokenSecret, refreshTokenLife);
-        console.log("accessToken",accessToken);
-        console.log("refreshToken",refreshToken);
-        if(repon&&accessToken&&refreshToken)
-        {
+            console.log("repon",repon);
+            
+        if(repon)
+        {  
+            console.log("ssssss",repon);
+            const accessToken = await jwtHelper.generateToken(repon, accessTokenSecret, accessTokenLife);
+            const refreshToken = await jwtHelper.generaterefresh(repon, refreshTokenSecret, refreshTokenLife);
             return res.status(StatusCodes.OK).json({
                 accessToken:accessToken,
                 refreshToken:refreshToken
             })
         }
-       return res.status(StatusCodes.NOT_FOUND)
+        res.status(StatusCodes.OK).json({status:0,error:"Not found user"})
 
     } catch (error) {
-         next(error)
+        return res.status(StatusCodes.NOT_FOUND)
     }
 }
 export const userController = {
