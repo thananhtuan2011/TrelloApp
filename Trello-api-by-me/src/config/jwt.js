@@ -8,7 +8,7 @@ let generateToken = (user, secretSignature, tokenLife) => {
     jwt.sign(
       {
         _id: user._id,
-        name: user.name,
+        username: user.username,
       },
       secretSignature,
       {
@@ -28,11 +28,11 @@ let generaterefresh = (user, secretSignature, tokenLife) => {
     // Định nghĩa những thông tin của user mà bạn muốn lưu vào token ở đây
     const userData = {
       _id: user._id,
-      name: user.name,
+      username: user.username,
     }
     // Thực hiện ký và tạo token
     jwt.sign(
-      { data: userData },
+      userData,
       secretSignature,
       {
         algorithm: "HS256",
@@ -57,9 +57,13 @@ let verifyToken = (token, secretKey) => {
     });
   });
 }
-
-module.exports = {
-  generaterefresh: generaterefresh,
-  generateToken: generateToken,
-  verifyToken: verifyToken,
-};
+export const jwtHelper={
+  generaterefresh,
+  generateToken,
+  verifyToken
+}
+// module.exports = {
+//   generaterefresh: generaterefresh,
+//   generateToken: generateToken,
+//   verifyToken: verifyToken,
+// };

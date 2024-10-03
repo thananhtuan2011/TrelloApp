@@ -3,10 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import { userController } from '~/controllers/userController';
 const Router = express.Router();
 
-Router.get('/login', (req, res) => {
-    userController.Login(req)
-    // res.send("ok getboard sss ")
-})
+Router.post('/login', userController.Login)
+
 //  created board validation and controller
 Router.post('/register', userController.CreatedUser)
 
