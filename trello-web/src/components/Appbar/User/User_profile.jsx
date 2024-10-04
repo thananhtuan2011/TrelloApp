@@ -2,7 +2,7 @@ import { Avatar, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import avatar from '../../../assets/image/avatar.png'
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 function User_profile(props) {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,7 +15,9 @@ function User_profile(props) {
     };
     const handleLogout=()=>
     {
-        navigate('/login')
+      Cookies.remove("accessToken")
+      Cookies.remove("refreshToken")
+      navigate('/login')
     }
     return (
         <div className='ml-2'>

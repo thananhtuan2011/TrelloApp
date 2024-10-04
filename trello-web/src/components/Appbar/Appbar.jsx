@@ -1,6 +1,6 @@
 import React from 'react';
 import DarkLight from '../DarkLightSelect/DarkLight';
-import { Box, Menu, MenuItem, Popover, Tooltip } from '@mui/material';
+import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemText, Menu, MenuItem, Popover, Tooltip } from '@mui/material';
 import AppsIcon from '@mui/icons-material/Apps';
 import vi_icon from '../../assets/image/vietnam.png'
 import en_icon from '../../assets/image/england.png'
@@ -10,6 +10,22 @@ import Notify from './Notify';
 import Search from './Search/Search';
 import HelpIcon from '@mui/icons-material/Help';
 import User_profile from './User/User_profile';
+ const _renderListDraw=(props)=>
+ {
+    const {onToggleDrawer}=props
+    const toggleDrawer=(event)=>()=>
+    {
+        onToggleDrawer(event)
+    }
+    return (
+        <Box>
+          
+          <Box sx={{ width: 250 }} role="presentation">
+         <button onClick={toggleDrawer(false)}> AAAA </button>
+    </Box>
+        </Box>
+    )
+ }
 function Translate(props) {
     const { i18n } = useTranslation();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -54,29 +70,38 @@ function Translate(props) {
 }
 function Appbar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [open_dra, setOpen] = React.useState(false);
+
+    const toggleDrawer = (newOpen) => () => {
+        
+      setOpen(newOpen);
+    };
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        console.log("event", event.currentTarget);
+       
 
 
     };
     const handleClose = () => {
-        console.log("hh");
 
         setAnchorEl(null);
     };
+    const handleonToggleDrawer=(value)=>
+    {
+        setOpen(value);
+    }
+   
     return (
         <Box className=" w-full flex items-center justify-between">
             <Box className='flex items-center'  sx={{display:{xs:'none',md:'flex'}}}>
                 <AppsIcon
-                    id="basic-button"
-                    aria-controls={open ? 'basic-menu' : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
+                    onClick={toggleDrawer(true)}
                     className='cursor-pointer color_light ' style={{ color: 'primary.main' }}></AppsIcon>
-                <Menu
+                     <Drawer open={open_dra} onClose={toggleDrawer(false)}>
+                       <_renderListDraw onToggleDrawer={handleonToggleDrawer} title="anh trai say hi "></_renderListDraw>
+      </Drawer>
+                {/* <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
                     open={open}
@@ -88,7 +113,7 @@ function Appbar(props) {
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </Menu>
+                </Menu> */}
                 <div className='flex items-center' >
                     <PivotTableChartIcon className='ml-1.5 color_light'></PivotTableChartIcon>
                     <span className='font-bold text-base ml-1 color_light'>Trello</span>

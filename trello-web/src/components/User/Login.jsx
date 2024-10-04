@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchLoginAPI } from '../../apis/users.api';
+import  Cookies from 'js-cookie';
 
 function Login(props) {
     const [userName, setuserName] = useState('');
     const [passWord, setpassWord] = useState('');
     const navigate = useNavigate();
-    const handleSubmit=()=>
+    const handleSubmit=(e)=>
     {
         try{
-
+            e.preventDefault();
             let payload={
                  username:userName,
                 password:passWord
             }
         fetchLoginAPI(payload).then(res=>
         {
-                console.log("ggg",res);
+               if(res&&res.accessToken)
+               {
+                Cookies.set("accessToken",res.accessToken)
+                Cookies.set("refreshToken",res.refreshToken)
+                  navigate('/')
+                return;
+               }
+               alert("Tài khoản hoặc mật khẩu không đúng !")
+               
                 
         }
         )
@@ -26,8 +35,7 @@ function Login(props) {
         
     }
 
-        // localStorage.setItem('token',"123213213");
-        // navigate('/')
+      
     }
     return (
         <div>
