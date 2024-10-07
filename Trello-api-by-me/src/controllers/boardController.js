@@ -24,7 +24,40 @@ const GetDetailBoard=  async (req, res, next) => {
         next(error)
     }
 }
+const GetAllBoard= async(req, res, next)=>
+{
+    try {
+        const repon=await boarServices.GetAllBoard()
+        
+        if(repon)
+        {
+            return res.status(StatusCodes.OK).json(repon)
+        }
+        res.status(StatusCodes.NOT_FOUND)
+
+    } catch (error) {
+        next(error)
+    }
+}
+const GetAllCloumnInBoard= async(req, res, next)=>
+    {
+        try {
+            const repon=await boarServices.GetAllCloumnInBoard(req.params.id)
+            
+            if(repon)
+            {
+                return res.status(StatusCodes.OK).json(repon)
+            }
+            res.status(StatusCodes.NOT_FOUND)
+    
+        } catch (error) {
+            next(error)
+        }
+    }
+
 export const boarController = {
     CreatedNewBoardController,
-    GetDetailBoard
+    GetDetailBoard,
+    GetAllBoard,
+    GetAllCloumnInBoard
 }

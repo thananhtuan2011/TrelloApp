@@ -11,6 +11,7 @@ const CreatedColumnController = async (req, res, next) => {
         next(error)
     }
 }
+
 export const columnController={
-    CreatedColumnController
+    CreatedColumnController,
 }

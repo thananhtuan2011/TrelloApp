@@ -8,5 +8,5 @@ const CreatedCloumn=async (patload)=>
 }
 
  export const CLOUMN_SERVICES={
-    CreatedCloumn
+    CreatedCloumn,
 }

@@ -12,14 +12,15 @@ import { fetchGetBoard } from '../../apis/board.api';
 function Board_bar(props) {
     const { t, i18n } = useTranslation();
     const [boards, setBoard] = React.useState([])
-    const _id="66f0f42fe0b2996f0ab3b3f4";
+    const {_id}=props
     useEffect(()=> {
+        console.log("_id_id_id",_id);
         fetchGetBoard(_id).then(res=>
         {
             setBoard(res)
         }
         )
-    },[])
+    },[_id])
   
     return (
         

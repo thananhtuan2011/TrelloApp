@@ -25,6 +25,28 @@ const CreatedNewColumn = async (payload) => {
         throw error
     }
 }
+// const GetAllCloumn = async () => {
+//     try {
+//         const result = await GET_DB().collection(COLUMN_COLLECTION_NAME).aggregate([
+//             {
+//                 $lookup:
+//                 {
+//                   from: "broads",
+//                   localField: "item",
+//                   foreignField: "boardId",
+//                   as: "inventory_docs"
+//                 }
+//             }
+//         ])
+//         return result;
+//     }
+//     catch(error)
+//     {
+//         throw error
+//     }
+// }
+
 export const COULMN_MODEL={
-    CreatedNewColumn
+    CreatedNewColumn,
+    // GetAllCloumn
 }
