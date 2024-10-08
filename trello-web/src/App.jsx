@@ -17,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<ProtectedRoute element={Appbar} />} />
-        <Route path="/:id" element={<ProtectedRoute element={Broads} />} />
+        <Route path="/:id" element={ <Broads />}>
+        </Route>
         
       </Routes>
     </Router>

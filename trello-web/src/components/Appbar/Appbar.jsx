@@ -11,7 +11,7 @@ import Search from './Search/Search';
 import HelpIcon from '@mui/icons-material/Help';
 import User_profile from './User/User_profile';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { fectGetAllBoard } from '../../apis/board.api';
+import { fectGetAllBoard, fectGetAllColumnsBoard } from '../../apis/board.api';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import theme_ from '../../theme';
 const _renderListDraw = (props) => {
@@ -95,7 +95,7 @@ function Appbar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open_dra, setOpen] = React.useState(false);
     const [listBoards, setlistBoards] = React.useState([]);
-
+    const [boards, setBoards] =React.useState({})
     const toggleDrawer = (newOpen) => () => {
 
         setOpen(newOpen);
@@ -107,7 +107,9 @@ function Appbar(props) {
 
 
     };
-    const fetchListBoard = () => {
+   
+    useEffect(() => {
+       
         fectGetAllBoard().then(res => {
             if (res) {
                 setlistBoards(res);
@@ -116,11 +118,13 @@ function Appbar(props) {
 
         }
         )
-
-    }
-    useEffect(() => {
-       
-        fetchListBoard()
+        // fectGetAllColumnsBoard("66f0f42fe0b2996f0ab3b3f4").then(res => {
+        //     if (res) {
+        //         console.log("resres", res);
+        //         setBoards(res);
+    
+        //     }   
+        // })
     }, [])
     const handleClose = () => {
 
@@ -129,7 +133,7 @@ function Appbar(props) {
     const handleonToggleDrawer = (value) => {
         setOpen(value);
     }
-
+    // console.log("boardsboards", boards);
     return (
         <Box className='flex items-center' style={{
             height: theme_.trello.header, backgroundColor:

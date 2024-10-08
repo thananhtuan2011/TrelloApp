@@ -14,7 +14,7 @@ function Board_bar(props) {
     const [boards, setBoard] = React.useState([])
     const {_id}=props
     useEffect(()=> {
-        console.log("_id_id_id",_id);
+        
         fetchGetBoard(_id).then(res=>
         {
             setBoard(res)

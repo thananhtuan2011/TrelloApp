@@ -7,20 +7,51 @@ import Board_bar from './board_bar';
 import Board_Card from './Board_Card/Board_Card';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import '../../assets/sass/board_card.scss'
-import { mockData } from '../../apis/mock-data';
 import { DndContext } from '@dnd-kit/core';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { fectGetAllColumnsBoard } from '../../apis/board.api';
 
 
 function Broads(props) {
+  
+     const { id } = useParams();
     const { mode, setMode } = useColorScheme();
     const { t, i18n } = useTranslation();
-    const { id } = useParams();
-
+  
     const handleDragEnd = (event) => {
         console.log("handleDragEnd", event);
 
     }
+    const sampleData = {
+        columns: [{ id: 1, title: "Column 1" }, { id: 2, title: "Column 2" }]
+      };
+    const [board, setBoardLayout] = React.useState({});
+    const fetchData = async () => {
+        try {
+          const res = await fectGetAllColumnsBoard("66f0f42fe0b2996f0ab3b3f4");
+          console.log("API response:", res);
+          console.log("Before setting state, board:", board); // Check the state before setting
+          setBoardLayout(res);  // Set the state
+          console.log("After setting state, board:", board); 
+        } catch (err) {
+          console.error("Error fetching data:", err);
+        }
+      };
+    
+  
+    useEffect(() => {
+        fetchData() 
+        // Fetch data when component mounts
+        // fectGetAllColumnsBoard("66f0f42fe0b2996f0ab3b3f4").then(res => {
+        //   console.log("API response:", res);
+        //   setBoardLayout({ ...res });  // This triggers a re-render
+        // });
+      }, []);  // Empty dependency array, runs only once when the component mounts
+      
+      // Log updated `board` after it changes
+    
+        
     return (
         <>
             <CssBaseline />
@@ -55,8 +86,8 @@ function Broads(props) {
                     {/* <DndContext onDragEnd={handleDragEnd}> */}
                     <Box className='flex overflow-x-auto body_board '>
                         {
-                            <Board_Card item_={mockData?.board.columns
-                            }></Board_Card>
+                            <Board_Card item_={board?.CloumnInBoard}
+                            ></Board_Card>
                         }
 
                         <Button style={{ minWidth: '160px' }} size='medium' className='!text-white  h-9 !border-none !bg-sky-400 hover:!bg-sky-700 !ml-3'>

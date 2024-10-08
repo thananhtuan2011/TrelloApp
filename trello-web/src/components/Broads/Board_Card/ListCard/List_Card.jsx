@@ -74,6 +74,8 @@ function List_Card(props) {
     useEffect(() => {
         setItemCard(props.item_card)
     }, [props])
+    if(ItemCard)
+    {
     return (
         <SortableContext
         items={ItemCard?.map(x => x._id)}
@@ -94,6 +96,8 @@ function List_Card(props) {
 
             </SortableContext>
     );
+}
+
 }
 
 export default List_Card;

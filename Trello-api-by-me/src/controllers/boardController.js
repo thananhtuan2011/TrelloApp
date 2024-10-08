@@ -43,12 +43,12 @@ const GetAllCloumnInBoard= async(req, res, next)=>
     {
         try {
             const repon=await boarServices.GetAllCloumnInBoard(req.params.id)
-            
+                
             if(repon)
             {
                 return res.status(StatusCodes.OK).json(repon)
             }
-            res.status(StatusCodes.NOT_FOUND)
+            res.status(StatusCodes.NOT_FOUND).json(repon)
     
         } catch (error) {
             next(error)

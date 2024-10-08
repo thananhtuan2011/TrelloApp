@@ -54,7 +54,12 @@ const GetAllCloumnInBoard = async (id) => {
             }
         }
     ]).toArray()
-    return result;
+    if(result.length>0)
+    {
+        return result[0];
+    }
+    return null
+   
 }
 
 

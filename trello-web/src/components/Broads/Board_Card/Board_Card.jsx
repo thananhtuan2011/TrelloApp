@@ -32,6 +32,8 @@ import Card_Iteam from './ListCard/Card.jsx/Card_item';
 
 const PLACEHOLDER_ID = 'placeholder';
 function Board_Card(props) {
+   
+    
     const keyboardSensor = useSensor(KeyboardSensor);
     const mouseSensor = useSensor(MouseSensor, {
         // Require the mouse to move by 10 pixels before activating
@@ -128,47 +130,57 @@ function Board_Card(props) {
         }
     }
     useEffect(() => {
-        SetColumnState(props.item_);
-    }, [props])
+        SetColumnState(props?.item_);
+ 
+    }, [props.item_])
 
-    return (
-        <>
-            <DndContext onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
-                <SortableContext
-                    items={ColumnState?.map(x => x._id)}
-                    strategy={horizontalListSortingStrategy}
-                >
-
-                    {
-                        ColumnState?.map((item_col) => {
-                            return (
-
-                                <ListColumn key={item_col._id} data={item_col}></ListColumn>
-
-
-                            )
-                        }
-                        )
-
-                    }
-
-
-                </SortableContext>
-                <DragOverlay>
-                    {
-
-
-                        dataActive ? (
-                            <ListColumn data={dataActive} />
-                        ) : <Card_Iteam item_card={CardState} mode_={props.mode_} ></Card_Iteam>
-
-
-                    }
-                </DragOverlay>
-            </DndContext>
-        </>
-
-    );
+        if(ColumnState)
+        {
+            return (
+                <>
+                <DndContext onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
+                        <SortableContext
+                            items={ColumnState?.map(x => x._id)}
+                            strategy={horizontalListSortingStrategy}
+                        >
+        
+                            {
+                                ColumnState?.map((item_col) => {
+                                    return (
+        
+                                        <ListColumn key={item_col._id} data={item_col}></ListColumn>
+        
+        
+                                    )
+                                }
+                                )
+        
+                            }
+        
+        
+                        </SortableContext>
+                        <DragOverlay>
+                            {
+        
+        
+                                dataActive ? (
+                                    <ListColumn data={dataActive} />
+                                ) : <Card_Iteam item_card={CardState} mode_={props.mode_} ></Card_Iteam>
+        
+        
+                            }
+                        </DragOverlay>
+                    </DndContext>
+                </>
+        
+            );
+        }
+        return (
+            <>
+            Empty
+            </>
+        )
+    
 }
 
 export default Board_Card;
