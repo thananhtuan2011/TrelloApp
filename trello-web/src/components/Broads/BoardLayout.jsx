@@ -14,44 +14,34 @@ import { fectGetAllColumnsBoard } from '../../apis/board.api';
 
 
 function Broads(props) {
-  
-     const { id } = useParams();
+    const [board, setBoardLayout] = React.useState({});
+    const [test, setTest] = React.useState(null);
+    const { id } = useParams();
     const { mode, setMode } = useColorScheme();
     const { t, i18n } = useTranslation();
-  
+
     const handleDragEnd = (event) => {
         console.log("handleDragEnd", event);
 
     }
-    const sampleData = {
-        columns: [{ id: 1, title: "Column 1" }, { id: 2, title: "Column 2" }]
-      };
-    const [board, setBoardLayout] = React.useState({});
     const fetchData = async () => {
         try {
-          const res = await fectGetAllColumnsBoard("66f0f42fe0b2996f0ab3b3f4");
-          console.log("API response:", res);
-          console.log("Before setting state, board:", board); // Check the state before setting
-          setBoardLayout(res);  // Set the state
-          console.log("After setting state, board:", board); 
+            const res = await fectGetAllColumnsBoard(id);
+            setBoardLayout(res);  // Set the state
         } catch (err) {
-          console.error("Error fetching data:", err);
+            console.error("Error fetching data:", err);
         }
-      };
-    
-  
+    };
+    const testFuntion=(value)=>()=>
+        {
+            alert(value)
+        }
+
     useEffect(() => {
-        fetchData() 
-        // Fetch data when component mounts
-        // fectGetAllColumnsBoard("66f0f42fe0b2996f0ab3b3f4").then(res => {
-        //   console.log("API response:", res);
-        //   setBoardLayout({ ...res });  // This triggers a re-render
-        // });
-      }, []);  // Empty dependency array, runs only once when the component mounts
-      
-      // Log updated `board` after it changes
-    
-        
+        fetchData()
+
+    }, [id]);
+
     return (
         <>
             <CssBaseline />
@@ -81,12 +71,17 @@ function Broads(props) {
                 height: theme_.trello.body_content, backgroundColor:
                     mode === 'dark' ? 'rgb(70 87 105)' : 'rgb(70 152 233)'
             }} >
-
+                {/*  condition check  same ngIf */}
+                {test &&
+                        <h2>
+                        You have 
+                        </h2>
+                    }
                 <Container maxWidth='false' >
                     {/* <DndContext onDragEnd={handleDragEnd}> */}
                     <Box className='flex overflow-x-auto body_board '>
                         {
-                            <Board_Card item_={board?.CloumnInBoard}
+                            <Board_Card testFuntion={testFuntion} item_={board?.CloumnInBoard}
                             ></Board_Card>
                         }
 

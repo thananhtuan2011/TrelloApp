@@ -129,21 +129,24 @@ function Board_Card(props) {
 
         }
     }
+   
+    const {testFuntion}=props
     useEffect(() => {
         SetColumnState(props?.item_);
  
-    }, [props.item_])
+    }, [props?.item_])
 
         if(ColumnState)
         {
             return (
                 <>
+                <button onClick={testFuntion("gggg111")} style={{color:"black"}}>Test</button>
+              
                 <DndContext onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
                         <SortableContext
                             items={ColumnState?.map(x => x._id)}
                             strategy={horizontalListSortingStrategy}
                         >
-        
                             {
                                 ColumnState?.map((item_col) => {
                                     return (
@@ -165,7 +168,7 @@ function Board_Card(props) {
         
                                 dataActive ? (
                                     <ListColumn data={dataActive} />
-                                ) : <Card_Iteam item_card={CardState} mode_={props.mode_} ></Card_Iteam>
+                                ) : <Card_Iteam item_card={CardState} mode_={props?.mode_} ></Card_Iteam>
         
         
                             }
