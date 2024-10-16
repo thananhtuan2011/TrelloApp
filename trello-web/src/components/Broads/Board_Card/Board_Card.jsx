@@ -140,7 +140,7 @@ function Board_Card(props) {
         {
             return (
                 <>
-                <button onClick={testFuntion("gggg111")} style={{color:"black"}}>Test</button>
+                {/* <button onClick={testFuntion("gggg111")} style={{color:"black"}}>Test</button> */}
               
                 <DndContext onDragEnd={handleDragEnd} sensors={sensors} onDragStart={handleDragStart}>
                         <SortableContext

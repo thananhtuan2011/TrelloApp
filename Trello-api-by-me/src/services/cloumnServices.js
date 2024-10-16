@@ -7,6 +7,6 @@ const CreatedCloumn=async (patload)=>
     return result;
 }
 
- export const CLOUMN_SERVICES={
+ export const columServices={
     CreatedCloumn,
 }

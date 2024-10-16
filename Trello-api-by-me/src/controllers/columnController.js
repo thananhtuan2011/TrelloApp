@@ -1,16 +1,16 @@
 import { StatusCodes } from "http-status-codes";
-import { boarServices } from "~/services/boardServices";
-
+import {columServices} from '~/services/cloumnServices'
 const CreatedColumnController = async (req, res, next) => {
     try {
 
-        const repon=await boarServices.CreatedNew(req.body)
+        const repon=await columServices.CreatedCloumn(req.body)
         res.status(StatusCodes.OK).json(repon)
 
     } catch (error) {
         next(error)
     }
 }
+
 
 export const columnController={
     CreatedColumnController,
