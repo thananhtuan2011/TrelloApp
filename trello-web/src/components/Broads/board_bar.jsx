@@ -9,20 +9,29 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import BoltIcon from '@mui/icons-material/Bolt';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { fetchGetBoard } from '../../apis/board.api';
+import { fetchLoginAPI } from '../../apis/users.api';
 function Board_bar(props) {
     const { t, i18n } = useTranslation();
     const [boards, setBoard] = React.useState([])
-    const _id="66f0f42fe0b2996f0ab3b3f4";
-    useEffect(()=> {
-        fetchGetBoard(_id).then(res=>
-        {
+    const _id = "66f0f42fe0b2996f0ab3b3f4";
+    useEffect(() => {
+        fetchGetBoard(_id).then(res => {
             setBoard(res)
         }
         )
-    },[])
-  
+        let payload = {
+            username: "tuanta",
+            password: "123"
+        }
+        fetchLoginAPI(payload).then(res => {
+            console.log("ggg", res);
+
+        }
+        ).catch(err => console.log("error", err))
+    }, [])
+
     return (
-        
+
         <div className=' text-white flex w-full overflow-x-auto' style={{ minWidth: '100rem' }}>
             <Box className=' flex w-2/4 items-center justify-between'>
                 <div>
