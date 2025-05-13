@@ -20,7 +20,7 @@ const CreatedNew=async (payload)=>
 const GetDetailBoard=async (id)=>
     {
         try{
-            const result=BOARD_MODEL.GetDetailBoard(id);
+            const result=  BOARD_MODEL.GetDetailBoard(id);
             return result;
     
         }
@@ -30,9 +30,37 @@ const GetDetailBoard=async (id)=>
         }
     
     }
-    
+    const GetAllBoard=async (id)=>
+        {
+            try{
+                const result=  BOARD_MODEL.GetAllBoard(id);
+                return result;
+        
+            }
+            catch(error)
+            {
+                throw error
+            }
+        
+        }
+        const GetAllCloumnInBoard=async (id)=>
+            {
+                try{
+                    const result=  BOARD_MODEL.GetAllCloumnInBoard(id);
+                    return result;
+            
+                }
+                catch(error)
+                {
+                    throw error
+                }
+            
+            }
+        
 
 export const boarServices={
     CreatedNew,
+    GetAllBoard,
+    GetAllCloumnInBoard,
     GetDetailBoard
 }

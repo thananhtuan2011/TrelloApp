@@ -6,12 +6,12 @@ import DragHandleIcon from '@mui/icons-material/DragHandle';
 import GroupIcon from '@mui/icons-material/Group';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import theme_ from '../../../../theme'
-import { Box, Menu, MenuItem, useColorScheme } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Menu, MenuItem, useColorScheme } from '@mui/material';
 import { CSS } from "@dnd-kit/utilities";
 import {  SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import List_Card from '../ListCard/List_Card';
 function ListColumn(props) {
-
+    const [_open, setOpen] = React.useState(false);
     const { mode, setMode } = useColorScheme();
     const [dataCard, setdataCard] = React.useState([]);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,8 +22,14 @@ function ListColumn(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-
+    const handleClickOpen = () => {
+        setOpen(true);
+      };
+    const handleClosePopup = () => {
+        setOpen(false);
+      };
+    
+   
     useEffect(() => {
         setdataCard(props.data?.cards);
         
@@ -76,7 +82,7 @@ function ListColumn(props) {
                 </Box>
                     <List_Card  key={data._id}    item_card={dataCard} mode_={mode}></List_Card>
 
-                <Box style={{ height: theme_.trello.col_foodter }} className='flex justify-between items-center pr-4 pl-4'>
+                <Box onClick={handleClickOpen} style={{ height: theme_.trello.col_foodter }} className='flex justify-between items-center pr-4 pl-4'>
                     <div className='flex items-center cursor-pointer '>
                         <AddCardIcon style={{
                             color:
@@ -94,6 +100,28 @@ function ListColumn(props) {
                     </div>
                 </Box>
             </Box>
+            <Dialog
+        open={_open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Add new card"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous
+            location data to Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup}>Cancel</Button>
+          <Button onClick={handleClose} autoFocus>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
         </div>
 
     );

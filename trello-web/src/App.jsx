@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from './components/User/Login';
 import ProtectedRoute from './components/Auth/ProtectedRouter';
 import Broads from './components/Broads/BoardLayout';
+import Appbar from './components/Appbar/Appbar';
 
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
         <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<ProtectedRoute element={Broads} />} />
+        <Route path="/" element={<ProtectedRoute element={Appbar} />} />
+        <Route path="/:id" element={ <Broads />}>
+        </Route>
+        
       </Routes>
     </Router>
         </I18nextProvider>

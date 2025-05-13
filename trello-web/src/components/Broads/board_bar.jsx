@@ -13,22 +13,14 @@ import { fetchLoginAPI } from '../../apis/users.api';
 function Board_bar(props) {
     const { t, i18n } = useTranslation();
     const [boards, setBoard] = React.useState([])
-    const _id = "66f0f42fe0b2996f0ab3b3f4";
+    const { _id } = props
     useEffect(() => {
+
         fetchGetBoard(_id).then(res => {
             setBoard(res)
         }
         )
-        let payload = {
-            username: "tuanta",
-            password: "123"
-        }
-        fetchLoginAPI(payload).then(res => {
-            console.log("ggg", res);
-
-        }
-        ).catch(err => console.log("error", err))
-    }, [])
+    }, [_id])
 
     return (
 

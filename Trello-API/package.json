@@ -5,7 +5,7 @@
   "author": "DuyNghiaDev - Một Lập Trình Viên",
   "description": "DuyNghiaDev Mern Stack",
   "engines": {
-    "node": "18.16.0"
+    "node": "18.20.3"
   },
   "scripts": {
     "lint": "eslint --ext js,jsx src/",
